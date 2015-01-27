@@ -30,7 +30,35 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
 do_configure_prepend() {
     #fix arch QA issues ("Architecture did not match")
-	rm ${S}/sunxi-board/script
-	rm ${S}/sunxi-board/fex2bin
+	rm -f ${S}/sunxi-board/script
+	rm -f ${S}/sunxi-board/fex2bin
+	rm -f ${S}/drivers/net/wireless/rtxx7x/tools/bin2h
+	rm -f ${S}/modules/wifi/ar6302/AR6K_SDK_ISC.build_3.1_RC.329/host/lib/wac/wac
+	rm -f ${S}/modules/wifi/ar6302/AR6K_SDK_ISC.build_3.1_RC.329/host/tools/pal_host_intf/pal_app
+	rm -f ${S}/modules/wifi/nano-c047.12/obj/hic-proxy
+    rm -f ${S}/modules/wifi/nano-c047.12/obj/x_mac_4.69.axf
+    rm -f ${S}/modules/wifi/nano-c047.12/obj/x_mac_patch_4_65.axf
+    rm -f ${S}/modules/wifi/nano-c047.12/obj/x_mac_4.66.axf
+    rm -f ${S}/modules/wifi/nano-c047.12/obj/x_mac-v4.68.axf
+    rm -f ${S}/modules/wifi/nano-c047.12/obj/x_mac.axf
+    rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/wl
+    rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/socket_noasd/x86/wl_server_socket
+	rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/wifi_noasd/x86/wl_server_serial
+	rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/wifi_noasd/x86/wl_server_wifi
+	rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/make/wl
+    rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/make/socket_noasd/x86/wl_server_socket
+	rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/make/wifi_noasd/x86/wl_server_serial
+    rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/make/wifi_noasd/x86/wl_server_wifi
+	rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/make/dongle_noasd/x86/wl_server_dongle
+    rm -f ${S}/modules/wifi/bcm40181/open-src/src/wl/exe/dongle_noasd/x86/wl_server_dongle
+	rm -f ${S}/modules/wifi/bcm40181/apps/tc_cli
+    rm -f ${S}/modules/wifi/bcm40181/apps/wfa_ca
+    rm -f ${S}/modules/wifi/bcm40181/apps/dhd
+    rm -f ${S}/modules/wifi/bcm40181/apps/ca_cli
+
+	#fix ldflags QA issues ("No GNU_HASH in the elf binary")
+	rm -f ${S}/modules/wifi/usi-bcm4329/v4.218.248.15/apps/epi_ttcp
+	rm -f ${S}/modules/wifi/bcm40181/apps/epi_ttcp
 }
 
+KERNEL_MODULE_AUTOLOAD += "mali"
