@@ -2,21 +2,32 @@ DESCRIPTION = "Generate pack.img"
 LICENSE = "CC0-1.0"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0ceb3372c9595f0a8067e55da801e4a1"
 
-DEPENDS = "emutils-native virtual/kernel"
+DEPENDS = "emutils-native virtual/kernel sunxi-board-fex-autorock"
 
 PV = "1.0"
 
+SRC_URI = "file://logo.bmp"
+
 inherit deploy
+
+SPLASH_BIN = "splash-${MACHINE}-${PV}-${PR}.bin"
+SPLASH_BIN_SYMLINK = "splash-${MACHINE}.bin"
+SPLASH_BIN_SYMLINK_SIMPLE = "splash.bin"
 
 PACK_IMG = "pack-${MACHINE}-${PV}-${PR}.img"
 PACK_IMG_SYMLINK = "pack-${MACHINE}.img"
 PACK_IMG_SYMLINK_SIMPLE = "pack.img"
 
 do_compile() {
-	packimg -p 2048 ${DEPLOY_DIR_IMAGE}/uImage-${MACHINE}.dtb@44000000 ${DEPLOY_DIR_IMAGE}/fex-${MACHINE}.bin@43000000 ${B}/${PACK_IMG}
+	mksplash -b32 ${WORKDIR}/logo.bmp -o ${B}/${SPLASH_BIN}
+	packimg -p 2048 ${DEPLOY_DIR_IMAGE}/uImage-${MACHINE}.dtb@44000000 ${DEPLOY_DIR_IMAGE}/fex-${MACHINE}.bin@43000000 ${B}/${SPLASH_BIN}@43100000 ${B}/${PACK_IMG}
 }
 
 do_deploy() {
+	install -m 0644 ${B}/${SPLASH_BIN} ${DEPLOYDIR}/
+    ln -snf ${SPLASH_BIN} ${DEPLOYDIR}/${SPLASH_BIN_SYMLINK}
+    ln -snf ${SPLASH_BIN} ${DEPLOYDIR}/${SPLASH_BIN_SYMLINK_SIMPLE}
+
     install -m 0644 ${B}/${PACK_IMG} ${DEPLOYDIR}/
     ln -snf ${PACK_IMG} ${DEPLOYDIR}/${PACK_IMG_SYMLINK}
     ln -snf ${PACK_IMG} ${DEPLOYDIR}/${PACK_IMG_SYMLINK_SIMPLE}
