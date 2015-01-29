@@ -6,6 +6,7 @@ DEFAULTTUNE = "cortexa7hf-neon-vfpv4"
 
 SERIAL_CONSOLE = "115200 ttyS0"
 
+PREFERRED_PROVIDER_u-boot = "u-boot-sunxi-autorock"
 PREFERRED_PROVIDER_virtual/kernel = "linux-sunxi-autorock"
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
@@ -16,3 +17,9 @@ MACHINE_FEATURES_remove = "usbgadget usbhost alsa touchscreen"
 
 # remove getty tty* from /etc/inittab
 USE_VT = "0"
+
+SPL_BINARY = "sunxi-spl.bin"
+UBOOT_SUFFIX = "bin"
+UBOOT_MAKE_TARGET = "all"
+
+
