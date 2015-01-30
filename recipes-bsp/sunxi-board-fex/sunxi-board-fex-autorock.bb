@@ -1,6 +1,6 @@
 DESCRIPTION = "Handler for Allwinner's FEX files"
-LICENSE = "CC0-1.0"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0ceb3372c9595f0a8067e55da801e4a1"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 DEPENDS = "sunxi-fexc-native"
 
@@ -11,7 +11,7 @@ SRCBRANCH = "master"
 SRC_URI = "git://git@git.autorock.com/sunxi/sunxi-board.git;branch=${SRCBRANCH};protocol=ssh"
 
 S = "${WORKDIR}/git"
-SUNXI_FEX_FILE_a20navi = "a20-navi.fex"
+SUNXI_FEX_FILE_a20navi = "a20-navi-njgdbus.fex"
 
 SUNXI_FEX_BIN_IMAGE = "fex-${MACHINE}-${PV}-${PR}.bin"
 SUNXI_FEX_BIN_IMAGE_SYMLINK = "fex-${MACHINE}.bin"
