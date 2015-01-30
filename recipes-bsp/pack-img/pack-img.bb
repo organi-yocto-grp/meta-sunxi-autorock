@@ -10,11 +10,11 @@ SRC_URI = "file://logo.bmp"
 
 inherit deploy
 
-SPLASH_BIN = "splash-${MACHINE}-${PV}-${PR}.bin"
+SPLASH_BIN = "splash-${MACHINE}-${PV}-${PR}-${DATETIME}.bin"
 SPLASH_BIN_SYMLINK = "splash-${MACHINE}.bin"
 SPLASH_BIN_SYMLINK_SIMPLE = "splash.bin"
 
-PACK_IMG = "pack-${MACHINE}-${PV}-${PR}.img"
+PACK_IMG = "pack-${MACHINE}-${PV}-${PR}-${DATETIME}.img"
 PACK_IMG_SYMLINK = "pack-${MACHINE}.img"
 PACK_IMG_SYMLINK_SIMPLE = "pack.img"
 
