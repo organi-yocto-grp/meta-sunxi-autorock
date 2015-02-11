@@ -61,4 +61,4 @@ do_configure_prepend() {
 	rm -f ${S}/modules/wifi/bcm40181/apps/epi_ttcp
 }
 
-KERNEL_MODULE_AUTOLOAD += "mali"
+#KERNEL_MODULE_AUTOLOAD += "mali"
