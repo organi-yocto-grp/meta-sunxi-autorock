@@ -20,7 +20,7 @@ PACK_IMG_SYMLINK_SIMPLE = "pack.img"
 
 do_compile() {
 	mksplash -b32 ${WORKDIR}/logo.bmp -o ${B}/${SPLASH_BIN}
-	packimg -p 2048 ${DEPLOY_DIR_IMAGE}/uImage-${MACHINE}.dtb@44000000 ${DEPLOY_DIR_IMAGE}/fex-${MACHINE}.bin@43000000 ${B}/${SPLASH_BIN}@43100000 ${B}/${PACK_IMG}
+	packimg -p 2048 ${DEPLOY_DIR_IMAGE}/uImage-${KERNEL_DEVICETREE}@44000000 ${DEPLOY_DIR_IMAGE}/fex-${MACHINE}.bin@43000000 ${B}/${SPLASH_BIN}@43100000 ${B}/${PACK_IMG}
 }
 
 do_deploy() {
