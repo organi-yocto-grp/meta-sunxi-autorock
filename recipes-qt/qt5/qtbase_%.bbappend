@@ -19,3 +19,6 @@ load(qt_config)
 
 EOF
 }
+
+PACKAGE_ARCH = "${MACHINE_SOCARCH}"
+

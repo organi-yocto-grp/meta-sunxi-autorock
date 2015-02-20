@@ -22,4 +22,6 @@ SPL_BINARY = "sunxi-spl.bin"
 UBOOT_SUFFIX = "bin"
 UBOOT_MAKE_TARGET = "all"
 
+MACHINE_SOCARCH = "${TUNE_PKGARCH}-sunxi"
+PACKAGE_EXTRA_ARCHS_append = " ${MACHINE_SOCARCH}"
 

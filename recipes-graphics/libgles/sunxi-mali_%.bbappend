@@ -26,3 +26,5 @@ python package_do_shlibs_append() {
 }
 
 FILES_${PN}-dev += "${libdir}/pkgconfig"
+
+PACKAGE_ARCH = "${MACHINE_SOCARCH}"
