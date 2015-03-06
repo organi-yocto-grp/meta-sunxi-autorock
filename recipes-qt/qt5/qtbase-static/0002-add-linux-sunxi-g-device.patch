@@ -1,0 +1,126 @@
+From 06c65bd5f3c9593a96b08204a139395b42549077 Mon Sep 17 00:00:00 2001
+From: Qiang Yu <yuq825@gmail.com>
+Date: Fri, 6 Mar 2015 10:57:09 +0800
+Subject: [PATCH 2/2] add linux-sunxi-g++ device
+
+---
+ .../devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp  | 71 ++++++++++++++++++++++
+ mkspecs/devices/linux-sunxi-g++/qmake.conf         | 19 ++++++
+ mkspecs/devices/linux-sunxi-g++/qplatformdefs.h    |  1 +
+ 3 files changed, 91 insertions(+)
+ create mode 100644 mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp
+ create mode 100644 mkspecs/devices/linux-sunxi-g++/qmake.conf
+ create mode 100644 mkspecs/devices/linux-sunxi-g++/qplatformdefs.h
+
+diff --git a/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp b/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp
+new file mode 100644
+index 0000000..fc383f2
+--- /dev/null
++++ b/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp
+@@ -0,0 +1,71 @@
++#include "qeglfshooks.h"
++#include <EGL/egl.h>
++#include <stdio.h>
++#include <sys/ioctl.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <fcntl.h>
++#include <linux/fb.h>
++#include <unistd.h>
++#include <QDebug>
++
++QT_BEGIN_NAMESPACE
++
++class QEglFSSUNXIHooks : public QEglFSHooks
++{
++public:
++    QEglFSSUNXIHooks();
++    virtual QSize screenSize() const;
++    virtual EGLNativeWindowType createNativeWindow(QPlatformWindow *window, const QSize &size, const QSurfaceFormat &format);
++    virtual void destroyNativeWindow(EGLNativeWindowType window);
++
++private:
++    QSize mScreenSize;
++};
++
++QEglFSSUNXIHooks::QEglFSSUNXIHooks()
++{
++    int fd = open("/dev/fb0", O_RDONLY);
++    if (fd == -1) {
++        qFatal("Failed to open fb to detect screen resolution!");
++    }
++
++    struct fb_var_screeninfo vinfo;
++    if (ioctl(fd, FBIOGET_VSCREENINFO, &vinfo) == -1) {
++        qFatal("Could not get variable screen info");
++    }
++
++    close(fd);
++
++    mScreenSize.setWidth(vinfo.xres);
++    mScreenSize.setHeight(vinfo.yres);
++
++    qDebug() << "Screen Size = " << mScreenSize;
++}
++
++QSize QEglFSSUNXIHooks::screenSize() const
++{
++    return mScreenSize;
++}
++
++EGLNativeWindowType QEglFSSUNXIHooks::createNativeWindow(QPlatformWindow *window, const QSize &size, const QSurfaceFormat &format)
++{
++    Q_UNUSED(window);
++    Q_UNUSED(format);
++
++    mali_native_window *eglWindow = new mali_native_window;
++    eglWindow->width = size.width();
++    eglWindow->height = size.height();
++
++    return eglWindow;
++}
++
++void QEglFSSUNXIHooks::destroyNativeWindow(EGLNativeWindowType window)
++{
++    delete window;
++}
++
++QEglFSSUNXIHooks eglFSSUNXIHooks;
++QEglFSHooks *platformHooks = &eglFSSUNXIHooks;
++
++QT_END_NAMESPACE
+diff --git a/mkspecs/devices/linux-sunxi-g++/qmake.conf b/mkspecs/devices/linux-sunxi-g++/qmake.conf
+new file mode 100644
+index 0000000..eb31d6b
+--- /dev/null
++++ b/mkspecs/devices/linux-sunxi-g++/qmake.conf
+@@ -0,0 +1,19 @@
++include(../common/linux_device_pre.conf)
++
++QMAKE_LFLAGS           += -Wl,-rpath-link,$$[QT_SYSROOT]/usr/lib
++
++QMAKE_LIBDIR           += $$[QT_SYSROOT]/usr/lib
++QMAKE_INCDIR           += $$[QT_SYSROOT]/usr/include
++
++QMAKE_LIBS_EGL         += -lEGL
++QMAKE_LIBS_OPENGL_ES2  += -lGLESv2
++
++COMPILER_FLAGS         += -march=armv7-a -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7
++
++EGLFS_PLATFORM_HOOKS_SOURCES = $$PWD/qeglfshooks_sunxi.cpp
++
++DISTRO_OPTS += deb-multi-arch hard-float
++
++include(../common/linux_arm_device_post.conf)
++
++load(qt_config)
+diff --git a/mkspecs/devices/linux-sunxi-g++/qplatformdefs.h b/mkspecs/devices/linux-sunxi-g++/qplatformdefs.h
+new file mode 100644
+index 0000000..99e9a27
+--- /dev/null
++++ b/mkspecs/devices/linux-sunxi-g++/qplatformdefs.h
+@@ -0,0 +1 @@
++#include "../../linux-g++/qplatformdefs.h"
+-- 
+1.9.1
+

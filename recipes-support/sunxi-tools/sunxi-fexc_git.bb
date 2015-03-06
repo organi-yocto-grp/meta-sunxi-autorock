@@ -4,8 +4,9 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "${AUTOREV}"
+SRCREV = "0883f92fbb820973e24604f28242556767add2d1"
 SRCBRANCH = "master"
+PR = "r0"
 
 SRC_URI = "git://git@git.autorock.com/sunxi/sunxi-tools.git;branch=${SRCBRANCH};protocol=ssh"
 

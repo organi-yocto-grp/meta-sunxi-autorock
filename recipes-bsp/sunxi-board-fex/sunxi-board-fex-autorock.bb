@@ -5,8 +5,9 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8
 DEPENDS = "sunxi-fexc-native"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "${AUTOREV}"
+SRCREV = "150bd2ed69e26ff2d7e6c254557713875493875e"
 SRCBRANCH = "master"
+PR = "r0"
 
 SRC_URI = "git://git@git.autorock.com/sunxi/sunxi-board.git;branch=${SRCBRANCH};protocol=ssh"
 

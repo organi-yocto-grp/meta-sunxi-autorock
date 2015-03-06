@@ -14,8 +14,7 @@ SRC_URI = "git://git@git.autorock.com/sunxi/linux.git;branch=${SRCBRANCH};protoc
            file://defconfig"
 
 SRCBRANCH = "master"
-SRCREV = "${AUTOREV}"
-LOCALVERSION = "-git${SRCREV}"
+SRCREV = "728c683fd5f7510c6554b12aeeff6354a582044e"
 
 DEPENDS += "lz4-native bc-native u-boot-mkimage-native"
 
@@ -23,7 +22,8 @@ S = "${WORKDIR}/git"
 
 COMPATIBLE_MACHINE = "a20navi"
 
-PV = "3.4+git${SRCPV}"
+PV = "3.4.61+git${SRCPV}"
+PR = "r0"
 
 #fix QA issue "Files/directories were installed but not shipped: /usr/src/debug"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"

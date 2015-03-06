@@ -7,7 +7,7 @@ COMPATIBLE_MACHINE = "a20navi"
 
 PROVIDES = "u-boot"
 
-SRCREV = "${AUTOREV}"
+SRCREV = "3b2b2743a7aa3d3c3b4bfcb68351957a5cf15c77"
 SRCBRANCH = "master"
 SRC_URI = "git://git@git.autorock.com/sunxi/uboot.git;branch=${SRCBRANCH};protocol=ssh"
 
@@ -15,6 +15,7 @@ S = "${WORKDIR}/git"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-PV = "git${SRCPV}"
+PV = "v2014.04+git${SRCPV}"
+PR = "r0"
 
-EXTRA_OEMAKE = 'CROSS_COMPILE=/opt/arm-2010q1/bin/arm-none-linux-gnueabi-'
+EXTRA_OEMAKE = 'CROSS_COMPILE=/opt/arm-2012.09/bin/arm-none-linux-gnueabi-'

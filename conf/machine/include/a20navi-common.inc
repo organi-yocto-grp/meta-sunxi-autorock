@@ -8,12 +8,13 @@ SERIAL_CONSOLE = "115200 ttyS0"
 
 PREFERRED_PROVIDER_u-boot = "u-boot-sunxi-autorock"
 PREFERRED_PROVIDER_virtual/kernel = "linux-sunxi-autorock"
+PREFERRED_VERSION_linux-libc-headers = ""
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 
 IMAGE_FSTYPES = "tar.bz2"
 
-MACHINE_FEATURES_remove = "usbgadget usbhost alsa touchscreen"
+MACHINE_FEATURES_remove = "usbgadget alsa touchscreen"
 
 # remove getty tty* from /etc/inittab
 USE_VT = "0"
