@@ -1,0 +1,74 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          gpio
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: gpio init script
+### END INIT INFO
+
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# export_gpio(n)
+export_gpio()
+{
+	echo $1 > /sys/class/gpio/export
+	gpio_dir=`find /sys/class/gpio -name gpio$1_*`
+	if [ "$gpio_dir" != "" ]; then
+		ln -s $gpio_dir /dev/gpio$1
+	fi
+}
+
+# unexport_gpio(n)
+unexport_gpio()
+{
+	rm /dev/gpio$1
+	echo $1 > /sys/class/gpio/unexport
+}
+
+ngpio=`cat /sys/class/gpio/gpiochip1/ngpio`
+
+do_start()
+{
+	for i in `seq 1 $ngpio`; do
+		export_gpio $i
+	done
+}
+
+do_stop()
+{
+	for i in `seq 1 $ngpio`; do
+		unexport_gpio $i
+	done
+}
+
+case "$1" in
+	start)
+		echo -n "Starting gpio: "
+		do_start
+		echo "done"
+		;;
+
+	stop)
+		echo -n "Stopping gpio: "
+		do_stop
+		echo "done"
+		;;
+
+	restart)
+		echo -n "Restarting gpio: "
+		do_stop
+		do_start
+		echo "done"
+		;;
+
+	*)
+		echo "Usage: cmd {start|stop|restart}" >&2
+		exit 1
+		;;
+esac
+
+exit 0
+
+

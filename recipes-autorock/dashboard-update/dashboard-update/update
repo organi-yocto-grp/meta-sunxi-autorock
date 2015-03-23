@@ -1,0 +1,67 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          update
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: dashboard update startup script
+### END INIT INFO
+
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+DAEMON=/usr/bin/A20Update
+DAEMONDIR=/home/root
+DAEMONARGS=""
+DAEMONENV="
+QT_QPA_EGLFS_HIDECURSOR=1 
+QT_QPA_EGLFS_DISABLE_INPUT=1
+"
+
+NAME=A20Update
+DESC=A20Update
+PIDFILE=/var/run/$NAME.pid
+
+test -x $DAEMON || exit 0
+
+# setup env
+if test -z "$DAEMONENV"; then
+	echo "No daemon env for dashboard"
+else
+	export $DAEMONENV
+fi
+
+# change work dir
+cd $DAEMONDIR
+
+set -e
+
+case "$1" in
+	start)
+	echo -n "Starting $NAME: "
+	start-stop-daemon -S -b -q -m -p $PIDFILE -x "$DAEMON" -- $DAEMONARGS
+	echo "$NAME."
+	;;
+
+	stop)
+	echo -n "Stopping $NAME: "
+	start-stop-daemon -K -x "$DAEMON" -p $PIDFILE
+	echo "$NAME."
+	;;
+
+	restart|force-reload)
+	echo -n "Restarting $NAME: "
+	start-stop-daemon -K -x "$DAEMON" -p $PIDFILE
+	sleep 1
+	start-stop-daemon -S -b -q -m -p $PIDFILE -x "$DAEMON" -- $DAEMONARGS
+	echo "$NAME."
+	;;
+
+	*)
+	echo "Usage: $NAME {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
+
