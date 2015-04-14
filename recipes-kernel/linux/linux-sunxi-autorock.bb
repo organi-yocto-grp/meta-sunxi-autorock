@@ -8,6 +8,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 inherit kernel siteinfo
 
+KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
+
 SUMMARY = "Linux kernel for Autorock sunxi boards"
 
 SRC_URI = "git://git@git.autorock.com/sunxi/linux.git;branch=${SRCBRANCH};protocol=ssh \
@@ -23,7 +25,7 @@ S = "${WORKDIR}/git"
 COMPATIBLE_MACHINE = "a20navi"
 
 PV = "3.4.61+git${SRCPV}"
-PR = "r0"
+PR = "r1"
 
 #fix QA issue "Files/directories were installed but not shipped: /usr/src/debug"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"

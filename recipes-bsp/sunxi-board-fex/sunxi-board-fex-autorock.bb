@@ -12,7 +12,8 @@ PR = "r0"
 SRC_URI = "git://git@git.autorock.com/sunxi/sunxi-board.git;branch=${SRCBRANCH};protocol=ssh"
 
 S = "${WORKDIR}/git"
-SUNXI_FEX_FILE_a20navi = "a20-navi-njgdbus.fex"
+SUNXI_FEX_FILE_a20navi-njgdbus = "a20-navi-njgdbus.fex"
+SUNXI_FEX_FILE_a20navi-huatai-b11 = "a20-navi-huatai-b11.fex"
 
 SUNXI_FEX_BIN_IMAGE = "fex-${MACHINE}-${PV}-${PR}-${DATETIME}.bin"
 SUNXI_FEX_BIN_IMAGE_SYMLINK = "fex-${MACHINE}.bin"
