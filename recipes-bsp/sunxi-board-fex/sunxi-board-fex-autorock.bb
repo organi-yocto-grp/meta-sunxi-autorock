@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8
 
 DEPENDS = "sunxi-fexc-native"
 
-PV = "1.1+git${SRCPV}"
-SRCREV = "fa5bc4e14ad2e68fcc80a97a78e2915071092a04"
+PV = "1.2+git${SRCPV}"
+SRCREV = "aff6102e3832a8eedd81193aabd173c390f3473b"
 SRCBRANCH = "master"
 PR = "r0"
 
