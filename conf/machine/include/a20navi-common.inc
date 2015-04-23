@@ -45,3 +45,4 @@ kernel-module-ntfs \
 "
 
 MACHINEOVERRIDES = "a20navi:${MACHINE}"
+MACHINE_CLASS = "a20navi"
