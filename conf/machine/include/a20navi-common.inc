@@ -39,10 +39,5 @@ UBOOT_CONFIG[nand] = "EP1000A_NODATA_config"
 
 MACHINE_FEATURES_remove += "rtc"
 
-KERNEL_MODULE_AUTOLOAD += "ntfs"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += " \
-kernel-module-ntfs \
-"
-
 MACHINEOVERRIDES = "a20navi:${MACHINE}"
 MACHINE_CLASS = "a20navi"
