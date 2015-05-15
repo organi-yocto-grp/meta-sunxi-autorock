@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8
 
 DEPENDS = "sunxi-fexc-native"
 
-PV = "1.3+git${SRCPV}"
-SRCREV = "5df45ca591725442ac3b5bbb3b322496e4ac9e5c"
+PV = "1.4+git${SRCPV}"
+SRCREV = "e44a79efea7902ea6475655d902a78df90c7772c"
 SRCBRANCH = "master"
 PR = "r0"
 
@@ -14,6 +14,7 @@ SRC_URI = "git://git@git.autorock.com/sunxi/sunxi-board.git;branch=${SRCBRANCH};
 S = "${WORKDIR}/git"
 SUNXI_FEX_FILE_a20navi-njgdbus = "a20-navi-njgdbus.fex"
 SUNXI_FEX_FILE_a20navi-huatai-b11 = "a20-navi-huatai-b11.fex"
+SUNXI_FEX_FILE_a20navi-haval-h6-10inch = "a20-navi-haval-h6-10inch.fex"
 
 SUNXI_FEX_BIN_IMAGE = "fex-${MACHINE}-${PV}-${PR}-${DATETIME}.bin"
 SUNXI_FEX_BIN_IMAGE_SYMLINK = "fex-${MACHINE}.bin"
