@@ -1,0 +1,17 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          ubifs
+# Required-Start:
+# Required-Stop: 
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: remount ubifs sync
+# Description:
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+mount -o remount,sync /
+
+: exit 0
+
