@@ -4,16 +4,13 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8
 
 inherit pack_img
 
-PACKAGECONFIG ??= "splash"
+PACKAGECONFIG ??= "dtb fex splash"
 PACKAGECONFIG[splash] = "${DEPLOY_DIR_IMAGE}/splash.bin@43100000,,splash-pack"
-
-DEPENDS += "virtual/kernel sunxi-board-fex-autorock"
+PACKAGECONFIG[fex]    = "${DEPLOY_DIR_IMAGE}/fex-${MACHINE}.bin@43000000,,sunxi-board-fex-autorock"
+PACKAGECONFIG[dtb]    = "${DEPLOY_DIR_IMAGE}/uImage-${KERNEL_DEVICETREE}@44000000,,virtual/kernel"
 
 PV = "1.0"
 
 do_compile() {
-	packimg -p 2048 \
-		${DEPLOY_DIR_IMAGE}/uImage-${KERNEL_DEVICETREE}@44000000 \
-		${DEPLOY_DIR_IMAGE}/fex-${MACHINE}.bin@43000000 \
-		${EXTRA_OECONF} ${B}/${PACK_IMG}
+	packimg -p 2048 ${EXTRA_OECONF} ${B}/${PACK_IMG}
 }
