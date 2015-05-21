@@ -16,7 +16,7 @@ SRC_URI = "git://git@git.autorock.com/sunxi/linux.git;branch=${SRCBRANCH};protoc
            file://defconfig"
 
 SRCBRANCH = "master"
-SRCREV = "728c683fd5f7510c6554b12aeeff6354a582044e"
+SRCREV = "51992035057cd4e909b902fdbe17230f37fa8cf3"
 
 DEPENDS += "lz4-native bc-native u-boot-mkimage-native"
 
@@ -64,3 +64,4 @@ do_configure_prepend() {
 }
 
 #KERNEL_MODULE_AUTOLOAD += "mali"
+
