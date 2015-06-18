@@ -8,8 +8,8 @@ SRC_URI = "git://git@git.autorock.com/njgdbus-dashboard/update.git;branch=${SRCB
 "
 
 SRCBRANCH = "master"
-SRCREV = "00104ec7cc67bbb24c3172f64bacb3463b3c72d0"
-PV = "1.0+git${SRCPV}"
+SRCREV = "a3b6017d647dac77bccdd650f0c1ca0d3cc7354c"
+PV = "1.1+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
