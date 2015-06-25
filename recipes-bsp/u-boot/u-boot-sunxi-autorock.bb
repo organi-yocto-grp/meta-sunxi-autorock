@@ -18,4 +18,16 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 PV = "v2014.04+git${SRCPV}"
 PR = "r0"
 
+SEPB = "${WORKDIR}/build"
+B = "${SEPB}"
+
 EXTRA_OEMAKE = 'CROSS_COMPILE=/opt/arm-2012.09/bin/arm-none-linux-gnueabi-'
+
+do_configure() {
+    make ${EXTRA_OEMAKE} ${UBOOT_MACHINE} -C ${S} O=${B}
+}
+
+do_compile_append() {
+    cp ${B}/${SPL_BINARY} ${S}/${SPL_BINARY}
+    cp ${B}/${UBOOT_BINARY} ${S}/${UBOOT_BINARY}
+}
