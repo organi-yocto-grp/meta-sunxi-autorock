@@ -12,6 +12,8 @@ PREFERRED_VERSION_linux-libc-headers = ""
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 
+PREFERRED_VERSION_glmark2 = "git"
+
 IMAGE_FSTYPES = "tar.bz2"
 
 MACHINE_FEATURES_remove = "usbgadget alsa touchscreen"

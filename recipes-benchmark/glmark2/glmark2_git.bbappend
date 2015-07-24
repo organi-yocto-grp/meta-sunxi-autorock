@@ -1,0 +1,1 @@
+PACKAGECONFIG = "fb-sunxi-glesv2"
