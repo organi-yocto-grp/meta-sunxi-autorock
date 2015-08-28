@@ -14,3 +14,5 @@ PV = "1.0"
 do_compile() {
 	packimg -p 2048 ${EXTRA_OECONF} ${B}/${PACK_IMG}
 }
+
+do_compile[deptask] = "do_deploy"
