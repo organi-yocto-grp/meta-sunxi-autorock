@@ -25,6 +25,23 @@ python package_do_shlibs_append() {
     fd.close()
 }
 
+
+python package_do_filedeps_append(){
+    provides_files[pkg].append("/usr/lib/libEGL.so")
+    key = "FILERPROVIDES_" + "/usr/lib/libEGL.so" + "_" + pkg
+    d.setVar(key, "libEGL.so")
+
+    provides_files[pkg].append("/usr/lib/libGLESv2.so")
+    key = "FILERPROVIDES_" + "/usr/lib/libGLESv2.so" + "_" + pkg
+    d.setVar(key, "libGLESv2.so")
+
+    provides_files[pkg].append("/usr/lib/libGLESv1_CM.so")
+    key = "FILERPROVIDES_" + "/usr/lib/libGLESv1_CM.so" + "_" + pkg
+    d.setVar(key, "libGLESv1_CM.so")
+
+    d.setVar("FILERPROVIDESFLIST_" + pkg, " ".join(provides_files[pkg]))
+}
+
 FILES_${PN}-dev += "${libdir}/pkgconfig"
 
 PACKAGE_ARCH = "${MACHINE_SOCARCH}"
