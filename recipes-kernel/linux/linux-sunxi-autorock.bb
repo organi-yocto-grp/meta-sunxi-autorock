@@ -18,6 +18,7 @@ SRC_URI = "git://git@git.autorock.com/sunxi/linux.git;branch=${SRCBRANCH};protoc
 SRCBRANCH = "master"
 SRCREV = "51992035057cd4e909b902fdbe17230f37fa8cf3"
 
+RDEPENDS_kernel-base_remove = "kernel-image"
 DEPENDS += "lz4-native bc-native u-boot-mkimage-native"
 
 S = "${WORKDIR}/git"
