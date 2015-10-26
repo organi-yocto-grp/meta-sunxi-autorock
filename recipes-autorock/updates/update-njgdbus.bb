@@ -8,7 +8,7 @@ SRC_URI = "git://git@gitlab.autorock.com/WinterJasmine/update.git;branch=${SRCBR
 "
 
 SRCBRANCH = "master"
-SRCREV = "35b1dd95beb2f51c9d1fb24ad88a3cc123c03bd7"
+SRCREV = "bc893fb0a261ee8f0752fb79c14b1270379ca7d2"
 PV = "1.3+git${SRCPV}"
 
 S = "${WORKDIR}/git"
